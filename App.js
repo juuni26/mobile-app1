@@ -5,7 +5,7 @@ import React, { Component} from 'react';
 import {
 
   View,
-  Image,ScrollView,StyleSheet,TouchableOpacity
+  Image,ScrollView,StyleSheet,
   
 } from 'react-native';
 
@@ -14,6 +14,7 @@ import {Button,Text, Footer, FooterTab,
    Container,Icon,Accordion,Badge,Content,Card,CardItem,Thumbnail,Left,Body,Right} from "native-base";
 
 import { RNCamera } from 'react-native-camera';
+import RNLocation from 'react-native-location';
 
 const dataArray = [
   { title: "Introduction", content: "This is first App, i made within 1 week. \nSchedule: 3-6day learning javascript&react.native component.\n1day to build real app" },
@@ -24,7 +25,21 @@ const dataArray = [
 
 export default class App extends Component {
 
-_showCamera(){
+_showlocation(){
+
+  RNLocation.requestPermission({
+    ios: "whenInUse",
+    android: {
+      detail: "coarse"
+    }
+  }).then(granted => {
+      if (granted) {
+        this.locationSubscription = RNLocation.subscribeToLocationUpdates(locations => {
+          
+        })
+      }
+    })
+  
   
 }
 
@@ -122,8 +137,9 @@ _showCamera(){
         />
             </Button>
 
-            <Button active>
+            <Button active onPress={this._showlocation}>
               <Icon active name="navigate" />
+              
             </Button>
             <Button>
               <Icon name="contact" />

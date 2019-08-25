@@ -29,6 +29,8 @@ target 'camera2' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'react-native-location', :path => '../node_modules/react-native-location'
+
   target 'camera2Tests' do
     inherit! :search_paths
     # Pods for testing
