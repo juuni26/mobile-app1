@@ -17,15 +17,15 @@ import { RNCamera } from 'react-native-camera';
 import RNLocation from 'react-native-location';
 
 const dataArray = [
-  { title: "Introduction", content: "This is first App, i made within 1 week. \nSchedule: 3-6day learning javascript&react.native component.\n1day to build real app" },
-  { title: "Info", content: "Klick Camera to test and Location" }
+  { title: "Introduction", content: "This is just preview, #continuous improvement" },
+  { title: "Info", content: "github (check eror code): https://github.com/juuni26/mobile-app1  " }
   
 ];
 
 
 export default class App extends Component {
 
-_showlocation(){
+_showlocation=()=>{
 
   RNLocation.requestPermission({
     ios: "whenInUse",
@@ -40,8 +40,36 @@ _showlocation(){
       }
     })
   
-  
 }
+
+_showcamera=()=>{
+<RNCamera 
+            ref={ref => {
+         this.camera = ref;
+          }}
+          style={styles.preview}
+          type={RNCamera.Constants.Type.back}
+          flashMode={RNCamera.Constants.FlashMode.on}
+          androidCameraPermissionOptions={{
+          title: 'Permission to use camera',
+          message: 'Boss we need your permission to use camera',
+          buttonPositive: 'Ok',
+          buttonNegative: 'Cancel',
+            }  }
+        androidRecordAudioPermissionOptions={{
+        title: 'Permission to use audio recording',
+        message: 'Boss we need your permission to use audio',
+        buttonPositive: 'Ok',
+        buttonNegative: 'Cancel',
+        }}  />
+
+}
+
+
+
+
+
+
 
   render() {
   return (
@@ -98,6 +126,43 @@ _showlocation(){
               </Right>
             </CardItem>
           </Card>
+
+        
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri: 'http://www.flagz.co.nz/wp-content/uploads/2013/08/monaco-flag.png'}} />
+                <Body>
+                  
+                  <Text>Jakarta</Text>
+                  <Text note>@Indonesia</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image source={{uri: "https://cache-graphicslib.viator.com/graphicslib/page-images/742x525/259955_Viator_Thinkstock_164257.jpg"}} style={{height: 300, width: null,flex:1}}/>
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="thumbs-up" />
+                  <Text>999 Likes</Text>
+                </Button>
+              </Left>
+              <Body>
+                <Button transparent>
+                  <Icon active name="chatbubbles" />
+                  <Text>99 Comments</Text>
+                </Button>
+              </Body>
+              <Right>
+                <Text>0h ago</Text>
+              </Right>
+            </CardItem>
+          </Card>
+
+
+
         </Content>
 
         
@@ -105,43 +170,28 @@ _showlocation(){
     {/* <Badge style={{backgroundColor:"blue"}}>
             <Text>2</Text>
     </Badge> */}
+
         </ScrollView>
      
         <Footer>
           <FooterTab>
-            <Button>
+            <Button onPress={()=>{alert("you've alreade home.")}} >
+              
               <Icon name="home" />
             </Button>
-            <Button active >
+            <Button active onPress={this._showcamera} >
+
             <Icon active  name="camera" />
-              <RNCamera 
-            ref={ref => {
-         this.camera = ref;
-          }}
-          style={styles.preview}
-          type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
-          androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message: 'Boss we need your permission to use camera',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-            }  }
-        androidRecordAudioPermissionOptions={{
-        title: 'Permission to use audio recording',
-        message: 'Boss we need your permission to use audio',
-        buttonPositive: 'Ok',
-        buttonNegative: 'Cancel',
-        }}  
+              
       
-        />
+        
             </Button>
 
             <Button active onPress={this._showlocation}>
               <Icon active name="navigate" />
               
             </Button>
-            <Button>
+            <Button onPress={()=>{alert("test you've clicked contact,navigate to page 2 belum dibuat.")}}>
               <Icon name="contact" />
             </Button>
           </FooterTab>
