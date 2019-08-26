@@ -1,7 +1,7 @@
 # mobile-app1
 first mobile app
 
-Report : Camera still error , request permision for camera already working 
+Report : Camera still error , request permision for camera already working , geolocation code added
 bult with : native base, react.native 
 
 cek preview 
